@@ -17,6 +17,7 @@ public class StreamComparatorEx {
 
     /**
      * Sorting based on name
+     *
      * @return
      */
     public static List<Student> getSortByName() {
@@ -25,16 +26,26 @@ public class StreamComparatorEx {
                 .collect(Collectors.toList());
 
     }
+
     public static List<Student> getSortByGPA() {
-        return  StudentDB.getAllStudents()
+        return StudentDB.getAllStudents()
                 .stream()
                 .sorted(Comparator.comparing(Student::getGpa))
                 .collect(Collectors.toList());
     }
 
+    public static List<Student> sortStudentsByGpaDesc() {
+        return StudentDB.getAllStudents()
+                .stream()
+                .sorted(Comparator.comparing(Student::getGpa).reversed())
+                .collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
 
-            getSortByName().forEach(student -> System.out.println(student.getName()));
-            getSortByGPA().forEach(student -> System.out.println("Name: "+student.getName() +" GPA :"+ student.getGpa()));
+        getSortByName().forEach(student -> System.out.println(student.getName()));
+        getSortByGPA().forEach(student -> System.out.println("Name: " + student.getName() + " GPA :" + student.getGpa()));
+        log.info("Sort Student by desc");
+        sortStudentsByGpaDesc().forEach(student -> System.out.println("Name: " + student.getName() + " GPA :" + student.getGpa()));
     }
 }
