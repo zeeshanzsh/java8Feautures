@@ -24,7 +24,6 @@ public class StreamComparatorEx {
         return StudentDB.getAllStudents().stream()
                 .sorted(Comparator.comparing(Student::getName))
                 .collect(Collectors.toList());
-
     }
 
     public static List<Student> getSortByGPA() {
